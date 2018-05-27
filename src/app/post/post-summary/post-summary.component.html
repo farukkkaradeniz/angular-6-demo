@@ -6,8 +6,8 @@
     <a href="#" class="btn btn-primary">Read More &rarr;</a>
   </div>
   <div class="card-footer text-muted">
-    Posted on January 1, 2017 by
-    <a href="#">Start Bootstrap</a>
+    Posted on {{post.postDate | date:'yyyy-MM-dd'}} by
+    <a href="#">{{post.postUserName}}</a>
   </div>
 </div>
 <nav aria-label="Page navigation example" *ngIf="pager.pageList.length > 0">
