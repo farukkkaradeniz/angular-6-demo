@@ -1,0 +1,31 @@
+<div class="card mb-4" *ngFor="let post of postSummary |slice:(pager.currentPage-1)*pager.pageSize:((pager.currentPage-1)*pager.pageSize)+pager.pageSize">
+  <img class="card-img-top" src="{{post.postImagePath}}" alt="Card image cap" style="max-height: 350px;">
+  <div class="card-body">
+    <h2 class="card-title">{{post.postTitle}}</h2>
+    <p class="card-text">{{post.postSummary}}</p>
+    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+  </div>
+  <div class="card-footer text-muted">
+    Posted on January 1, 2017 by
+    <a href="#">Start Bootstrap</a>
+  </div>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li>
+      <a style="cursor:pointer;" (click)="setPage(pager.currentPage-1)" class="page-link" href="#">İlk</a>
+    </li>
+    <li>
+      <a style="cursor:pointer;" (click)="setPage(pager.currentPage-1)" class="page-link" href="#">Önceki</a>
+    </li>
+    <li *ngFor="let page of pager.pageList" class="page-item" [class.active]="page===pager.currentPage">
+      <a style="cursor:pointer;" (click)="setPage(page)" class="page-link" href="#">{{page}}</a>
+    </li>
+    <li>
+      <a style="cursor:pointer;" (click)="setPage(pager.currentPage+1)" class="page-link" href="#">Sonraki</a>
+    </li>
+    <li>
+      <a style="cursor:pointer;" (click)="setPage(pager.totalPages)" class="page-link" href="#">Son</a>
+    </li>
+  </ul>
+</nav>
