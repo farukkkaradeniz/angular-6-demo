@@ -2,32 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../post';
 import { PostList } from '../post-list.mock';
 import { Pager } from '../../app-pager';
+import { PostSummaryService } from './post-summary.service';
 
 @Component({
   selector: 'app-post-summary',
   templateUrl: './post-summary.component.html',
-  styleUrls: ['./post-summary.component.css']
+  styleUrls: ['./post-summary.component.css'],
+  providers:[PostSummaryService]
 })
 export class PostSummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postSummaryService:PostSummaryService) { }
 
   postSummary:Post[];
-  pager:Pager;
+  pager:Pager= new Pager();
 
   ngOnInit() {
     this.getPostSummary();
   }
 
   getPostSummary(){
-    this.postSummary = PostList;
-    this.pager = this.getPager(this.postSummary.length);
+    this.postSummaryService.getAllPosts().subscribe(response=>{
+      this.postSummary = response;
+      this.pager = this.getPager(this.postSummary.length);
+    });
   }
 
   getPager(totalItems:number,currentPage:number=1,pageSize:number=5):Pager{
     let totalPages = Math.ceil(totalItems/pageSize);
+    if(totalPages === 0) totalPages = 1;
     let pages:Array<number>=[];
-    for(let i = 1;i<totalPages;i++){
+    for(let i = 1;i<=totalPages;i++){
       pages.push(i);
     }
     var pager = new Pager();

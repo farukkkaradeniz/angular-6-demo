@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -16,9 +17,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     NavBarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: "apiUrl", useValue: "http://localhost:8080/api" },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

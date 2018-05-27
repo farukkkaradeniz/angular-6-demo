@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NavContent } from './navContent';
 import { NavContentList } from './navContent-list.mock';
+import { NavBarService } from './nav-bar.service';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
+  providers:[NavBarService]
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private navBarService:NavBarService) { }
 
   navBarContentList:NavContent[];
 
@@ -18,7 +20,9 @@ export class NavBarComponent implements OnInit {
   }
 
   getNavBarItems(){
-    this.navBarContentList = NavContentList;
+    this.navBarService.getAllMenuElements().subscribe(response=>{
+      this.navBarContentList = response;
+    });
   }
 
 }

@@ -10,21 +10,21 @@
     <a href="#">Start Bootstrap</a>
   </div>
 </div>
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation example" *ngIf="pager.pageList.length > 0">
   <ul class="pagination">
-    <li>
-      <a style="cursor:pointer;" (click)="setPage(pager.currentPage-1)" class="page-link" href="#">İlk</a>
+    <li *ngIf="pager.currentPage != 1">
+      <a style="cursor:pointer;" (click)="setPage(1)" class="page-link" href="#">İlk</a>
     </li>
-    <li>
+    <li *ngIf="pager.currentPage != 1">
       <a style="cursor:pointer;" (click)="setPage(pager.currentPage-1)" class="page-link" href="#">Önceki</a>
     </li>
     <li *ngFor="let page of pager.pageList" class="page-item" [class.active]="page===pager.currentPage">
       <a style="cursor:pointer;" (click)="setPage(page)" class="page-link" href="#">{{page}}</a>
     </li>
-    <li>
+    <li *ngIf="pager.currentPage != pager.totalPages">
       <a style="cursor:pointer;" (click)="setPage(pager.currentPage+1)" class="page-link" href="#">Sonraki</a>
     </li>
-    <li>
+    <li *ngIf="pager.currentPage != pager.totalPages">
       <a style="cursor:pointer;" (click)="setPage(pager.totalPages)" class="page-link" href="#">Son</a>
     </li>
   </ul>
