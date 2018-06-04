@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../post';
-import { PostList } from '../post-list.mock';
 import { Pager } from '../../app-pager';
 import { PostSummaryService } from './post-summary.service';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-summary',
@@ -12,7 +12,7 @@ import { PostSummaryService } from './post-summary.service';
 })
 export class PostSummaryComponent implements OnInit {
 
-  constructor(private postSummaryService:PostSummaryService) { }
+  constructor(private postSummaryService:PostSummaryService,private router:Router, private route:ActivatedRoute) { }
 
   postSummary:Post[];
   pager:Pager= new Pager();
@@ -45,6 +45,10 @@ export class PostSummaryComponent implements OnInit {
 
   setPage(page:number){
     this.pager.currentPage = page;
+  }
+
+  getPostDetail(post:Post){
+    this.router.navigate(['/post-detail',post.postId]);
   }
 
 }

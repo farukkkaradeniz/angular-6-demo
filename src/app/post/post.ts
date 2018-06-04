@@ -4,4 +4,6 @@ export class Post{
     postSummary:String;
     postContent:String;
     postImagePath:String;
+    postDate : Date;
+    postUserName : String;
 }
