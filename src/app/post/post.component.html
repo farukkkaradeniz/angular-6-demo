@@ -3,7 +3,7 @@
   <div class="card-body">
     <h2 class="card-title">{{post.postTitle}}</h2>
     <p class="card-text">{{post.postSummary}}</p>
-    <p class="card-text">{{post.postContent}}</p>
+    <div [innerHtml]="post.postContent"></div>
   </div>
   <div class="card-footer text-muted">
     Posted on {{post.postDate | date:'yyyy-MM-dd'}} by

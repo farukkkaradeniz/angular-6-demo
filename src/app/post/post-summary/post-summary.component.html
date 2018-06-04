@@ -3,29 +3,29 @@
   <div class="card-body">
     <h2 class="card-title">{{post.postTitle}}</h2>
     <p class="card-text">{{post.postSummary}}</p>
-    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+    <a class="btn btn-primary" (click)="getPostDetail(post)">Read More &rarr;</a>
   </div>
   <div class="card-footer text-muted">
     Posted on {{post.postDate | date:'yyyy-MM-dd'}} by
-    <a href="#">{{post.postUserName}}</a>
+    <a>{{post.postUserName}}</a>
   </div>
 </div>
 <nav aria-label="Page navigation example" *ngIf="pager.pageList.length > 0">
   <ul class="pagination">
     <li *ngIf="pager.currentPage != 1">
-      <a style="cursor:pointer;" (click)="setPage(1)" class="page-link" href="#">İlk</a>
+      <a style="cursor:pointer;" (click)="setPage(1)" class="page-link">İlk</a>
     </li>
     <li *ngIf="pager.currentPage != 1">
-      <a style="cursor:pointer;" (click)="setPage(pager.currentPage-1)" class="page-link" href="#">Önceki</a>
+      <a style="cursor:pointer;" (click)="setPage(pager.currentPage-1)" class="page-link">Önceki</a>
     </li>
     <li *ngFor="let page of pager.pageList" class="page-item" [class.active]="page===pager.currentPage">
-      <a style="cursor:pointer;" (click)="setPage(page)" class="page-link" href="#">{{page}}</a>
+      <a style="cursor:pointer;" (click)="setPage(page)" class="page-link">{{page}}</a>
     </li>
     <li *ngIf="pager.currentPage != pager.totalPages">
-      <a style="cursor:pointer;" (click)="setPage(pager.currentPage+1)" class="page-link" href="#">Sonraki</a>
+      <a style="cursor:pointer;" (click)="setPage(pager.currentPage+1)" class="page-link">Sonraki</a>
     </li>
     <li *ngIf="pager.currentPage != pager.totalPages">
-      <a style="cursor:pointer;" (click)="setPage(pager.totalPages)" class="page-link" href="#">Son</a>
+      <a style="cursor:pointer;" (click)="setPage(pager.totalPages)" class="page-link">Son</a>
     </li>
   </ul>
 </nav>
